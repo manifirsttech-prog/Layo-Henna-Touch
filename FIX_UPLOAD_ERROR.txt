@@ -1,0 +1,62 @@
+═══════════════════════════════════════════════════════════════
+  🔧 FIX "Upload failed. Please try again." ERROR
+═══════════════════════════════════════════════════════════════
+
+The upload is failing because you need to create an upload preset
+in Cloudinary. This takes only 2 minutes!
+
+═══════════════════════════════════════════════════════════════
+  ✅ QUICK FIX - Follow These Steps:
+═══════════════════════════════════════════════════════════════
+
+1. Open Browser → Go to:
+   https://console.cloudinary.com/
+
+2. Login to your Cloudinary account
+
+3. Click ⚙️ SETTINGS (top right corner)
+
+4. Click "Upload" in the left sidebar
+
+5. Scroll down to "Upload presets" section
+
+6. Click "Add upload preset" button
+
+7. Fill in EXACTLY:
+   ┌──────────────────────────────────┐
+   │ Upload preset name:              │
+   │ henna-designs                    │ ← Type this exactly
+   │                                  │
+   │ Signing Mode:                    │
+   │ ⦿ Unsigned  ○ Signed            │ ← Select "Unsigned"
+   │                                  │
+   │ Folder:                          │
+   │ henna-gallery                    │ ← Type this
+   └──────────────────────────────────┘
+
+8. Click "SAVE" button
+
+9. Go back to your admin dashboard and try uploading again!
+
+═══════════════════════════════════════════════════════════════
+  🎯 IMPORTANT:
+═══════════════════════════════════════════════════════════════
+
+✓ Preset name MUST be: henna-designs (exactly, no spaces)
+✓ Signing Mode MUST be: Unsigned (not Signed)
+✓ This is a ONE-TIME setup
+
+═══════════════════════════════════════════════════════════════
+  ✨ AFTER SETUP:
+═══════════════════════════════════════════════════════════════
+
+→ Refresh your admin dashboard
+→ Try uploading an image
+→ Should work perfectly!
+→ Images will appear on your website automatically
+
+═══════════════════════════════════════════════════════════════
+
+Need more help? Check: SETUP_CLOUDINARY_PRESET.md
+
+═══════════════════════════════════════════════════════════════
