@@ -1094,3 +1094,292 @@ video {
     right: 1rem;
   }
 }
+
+
+/* ===== SERVICES SECTION ===== */
+.services-section {
+  padding: 5rem 0;
+  background: white;
+}
+
+.services-intro {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin: -1.5rem 0 3rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.service-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(30, 64, 175, 0.15);
+  border-color: #3b82f6;
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.service-card h3 {
+  color: #1e40af;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.service-card > p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.service-features {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.service-features li {
+  padding: 0.5rem 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.service-price {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e5e7eb;
+}
+
+.services-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.whatsapp-button-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  padding: 1.25rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.whatsapp-button-large:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ===== BOOKING PROCESS SECTION ===== */
+.booking-process {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+}
+
+.process-intro {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin: -1.5rem 0 3rem;
+}
+
+.process-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.step {
+  flex: 1;
+  min-width: 200px;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.step:hover {
+  transform: translateY(-10px);
+}
+
+.step-number {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 10px rgba(30, 64, 175, 0.3);
+}
+
+.step-icon {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.step h3 {
+  color: #1e40af;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.step p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.step-arrow {
+  font-size: 2rem;
+  color: #3b82f6;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pay-booking-fee-btn {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.pay-booking-fee-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+}
+
+.booking-notes {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 3rem;
+  border-left: 5px solid #3b82f6;
+}
+
+.booking-notes h4 {
+  color: #1e40af;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.booking-notes ul {
+  list-style: none;
+  padding: 0;
+}
+
+.booking-notes li {
+  padding: 0.75rem 0;
+  color: #555;
+  line-height: 1.6;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.booking-notes li:last-child {
+  border-bottom: none;
+}
+
+.booking-notes strong {
+  color: #1e40af;
+}
+
+/* ===== RESPONSIVE - SERVICES & BOOKING ===== */
+@media (max-width: 968px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .process-steps {
+    flex-direction: column;
+  }
+
+  .step-arrow {
+    transform: rotate(90deg);
+    margin: 1rem 0;
+  }
+
+  .step {
+    width: 100%;
+  }
+
+  .whatsapp-button-large {
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-section {
+    padding: 3rem 0;
+  }
+
+  .booking-process {
+    padding: 3rem 0;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .step {
+    padding: 1.5rem 1rem;
+  }
+
+  .booking-notes {
+    padding: 1.5rem;
+  }
+}
