@@ -1286,20 +1286,32 @@ video {
 
 .pay-booking-fee-btn {
   margin-top: 1rem;
-  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pay-booking-fee-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+.pay-booking-fee-btn:active {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .booking-notes {

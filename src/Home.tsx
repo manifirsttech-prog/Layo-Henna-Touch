@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase';
+import PaystackPop from '@paystack/inline-js';
 import './App.css';
 
 interface GalleryItem {
@@ -72,48 +73,84 @@ function Home() {
   const feetDesigns = gallery.filter(item => item.category === 'feet');
   const eventDesigns = gallery.filter(item => item.category === 'event');
 
-  // Paystack payment handler
+  // Professional booking payment handler with Paystack
   const handlePayBookingFee = () => {
-    const paystackKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+    const paystackPublicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
     
-    if (!paystackKey || paystackKey === 'your_paystack_public_key_here') {
-      alert('Payment system is being set up. Please contact us via WhatsApp to make your booking payment.');
-      window.open('https://wa.me/2348085521289?text=Hello%20Layo%20Henna%20Touch!%20I%27d%20like%20to%20pay%20the%20booking%20fee.', '_blank');
+    if (!paystackPublicKey || paystackPublicKey.includes('your_paystack')) {
+      alert('⚠️ Payment system configuration error. Please contact us via WhatsApp to complete your booking.');
+      window.open('https://wa.me/2348085521289?text=Hello%20Layo%20Henna%20Touch!%20I%27d%20like%20to%20book%20and%20pay%20the%20booking%20fee.', '_blank');
       return;
     }
 
-    const email = prompt('Enter your email address:');
-    if (!email) {
-      alert('Email is required to process payment');
+    // Collect customer information
+    const customerName = prompt('👤 Enter your full name:');
+    if (!customerName || customerName.trim() === '') {
+      alert('❌ Name is required to proceed with booking.');
       return;
     }
 
-    // @ts-ignore - Paystack is loaded via script tag
-    const handler = PaystackPop.setup({
-      key: paystackKey,
-      email: email,
-      amount: 200000, // ₦2,000 in kobo
+    const customerEmail = prompt('📧 Enter your email address:');
+    if (!customerEmail || !customerEmail.includes('@')) {
+      alert('❌ Valid email is required to proceed with booking.');
+      return;
+    }
+
+    const customerPhone = prompt('📱 Enter your phone number:');
+    if (!customerPhone || customerPhone.trim() === '') {
+      alert('❌ Phone number is required to proceed with booking.');
+      return;
+    }
+
+    // Generate unique reference
+    const reference = 'HT-BF-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+
+    // Initialize Paystack payment using the library
+    const paystack = PaystackPop.setup({
+      key: paystackPublicKey,
+      email: customerEmail,
+      amount: 250000, // ₦2,500 in kobo (Paystack uses kobo)
       currency: 'NGN',
-      ref: 'BF-' + Math.floor(Math.random() * 1000000000 + 1),
+      ref: reference,
       metadata: {
         custom_fields: [
           {
-            display_name: 'Service',
-            variable_name: 'service',
+            display_name: 'Customer Name',
+            variable_name: 'customer_name',
+            value: customerName
+          },
+          {
+            display_name: 'Phone Number',
+            variable_name: 'phone_number',
+            value: customerPhone
+          },
+          {
+            display_name: 'Service Type',
+            variable_name: 'service_type',
             value: 'Henna Booking Fee'
           }
         ]
       },
-      callback: function(response: any) {
-        alert('✅ Payment successful! Reference: ' + response.reference);
-        window.open(`https://wa.me/2348085521289?text=Hello!%20I%27ve%20paid%20the%20booking%20fee.%20Reference:%20${response.reference}`, '_blank');
+      onSuccess: (transaction: any) => {
+        // Payment successful
+        console.log('Payment successful:', transaction);
+        
+        alert(`✅ Payment Successful!\n\n💰 Amount: ₦2,500\n📝 Reference: ${transaction.reference}\n\n✨ Your booking slot is now secured!\n\nYou'll be redirected to WhatsApp to confirm your booking details.`);
+        
+        // Redirect to WhatsApp with booking confirmation
+        const whatsappMessage = `Hello Layo Henna Touch! 🎨\n\n✅ I've successfully paid the booking fee.\n\n👤 Name: ${customerName}\n📧 Email: ${customerEmail}\n📱 Phone: ${customerPhone}\n💳 Payment Reference: ${transaction.reference}\n💰 Amount: ₦2,500\n\nI'd like to confirm my henna appointment. Please let me know the next steps. Thank you!`;
+        
+        window.open(`https://wa.me/2348085521289?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
       },
-      onClose: function() {
-        console.log('Payment window closed');
+      onClose: () => {
+        // Payment cancelled
+        console.log('Payment cancelled');
+        alert('⚠️ Payment cancelled. Your booking fee was not processed.\n\nFeel free to try again when you\'re ready, or contact us via WhatsApp for assistance.');
       }
     });
-    
-    handler.openIframe();
+
+    // Open Paystack popup
+    paystack.openIframe();
   };
 
   const toggleMobileMenu = () => {
@@ -456,9 +493,9 @@ function Home() {
               <div className="step-number">3</div>
               <div className="step-icon">📅</div>
               <h3>Confirm Date & Pay</h3>
-              <p>Secure your slot by confirming the date and paying a booking fee (₦2,000 - ₦5,000).</p>
+              <p>Secure your slot by confirming the date and paying a booking fee of ₦2,500.</p>
               <button className="pay-booking-fee-btn" onClick={() => handlePayBookingFee()}>
-                Pay Booking Fee Now
+                💳 Pay ₦2,500 Booking Fee Now
               </button>
             </div>
 
@@ -477,7 +514,7 @@ function Home() {
             <ul>
               <li>📍 <strong>Location:</strong> Ilaro, Ogun State (Home service available)</li>
               <li>⏰ <strong>Booking in Advance:</strong> Recommended 1-2 weeks ahead for events</li>
-              <li>💰 <strong>Payment:</strong> Booking fee secures your slot, balance due after service</li>
+              <li>💰 <strong>Payment:</strong> ₦2,500 booking fee secures your slot, balance due after service</li>
               <li>📞 <strong>Cancellation:</strong> 48 hours notice required for full refund</li>
             </ul>
           </div>
