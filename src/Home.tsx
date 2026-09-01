@@ -109,7 +109,7 @@ function Home() {
     const paystack = PaystackPop.setup({
       key: paystackPublicKey,
       email: customerEmail,
-      amount: 2000, // ₦20 in kobo (Paystack uses kobo)
+      amount: 5000, // ₦50 in kobo (Paystack uses kobo)
       currency: 'NGN',
       ref: reference,
       metadata: {
@@ -135,10 +135,10 @@ function Home() {
         // Payment successful
         console.log('Payment successful:', transaction);
         
-        alert(`✅ Payment Successful!\n\n💰 Amount: ₦20\n📝 Reference: ${transaction.reference}\n\n✨ Your booking slot is now secured!\n\nYou'll be redirected to WhatsApp to confirm your booking details.`);
+        alert(`✅ Payment Successful!\n\n💰 Amount: ₦50\n📝 Reference: ${transaction.reference}\n\n✨ Your booking slot is now secured!\n\nYou'll be redirected to WhatsApp to confirm your booking details.`);
         
         // Redirect to WhatsApp with booking confirmation
-        const whatsappMessage = `Hello Layo Henna Touch! 🎨\n\n✅ I've successfully paid the booking fee.\n\n👤 Name: ${customerName}\n📧 Email: ${customerEmail}\n📱 Phone: ${customerPhone}\n💳 Payment Reference: ${transaction.reference}\n💰 Amount: ₦20\n\nI'd like to confirm my henna appointment. Please let me know the next steps. Thank you!`;
+        const whatsappMessage = `Hello Layo Henna Touch! 🎨\n\n✅ I've successfully paid the booking fee.\n\n👤 Name: ${customerName}\n📧 Email: ${customerEmail}\n📱 Phone: ${customerPhone}\n💳 Payment Reference: ${transaction.reference}\n💰 Amount: ₦50\n\nI'd like to confirm my henna appointment. Please let me know the next steps. Thank you!`;
         
         window.open(`https://wa.me/2348085521289?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
       },
@@ -392,9 +392,9 @@ function Home() {
               <div className="step-number">3</div>
               <div className="step-icon">📅</div>
               <h3>Confirm Date & Pay</h3>
-              <p>Secure your slot by confirming the date and paying a booking fee of ₦20.</p>
+              <p>Secure your slot by confirming the date and paying a booking fee of ₦50.</p>
               <button className="pay-booking-fee-btn" onClick={() => handlePayBookingFee()}>
-                💳 Pay ₦20 Booking Fee Now
+                💳 Pay ₦50 Booking Fee Now
               </button>
             </div>
 
