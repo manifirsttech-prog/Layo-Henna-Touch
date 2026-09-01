@@ -797,6 +797,20 @@ video {
   text-align: right;
 }
 
+.empty-testimonials {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border: 2px dashed #d1d5db;
+}
+
+.empty-testimonials p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0;
+}
+
 /* 7. BOOKING CTA */
 .booking-cta {
   padding: 5rem 0;
