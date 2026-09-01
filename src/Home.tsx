@@ -242,7 +242,6 @@ function Home() {
           <div className="logo">Layo Henna Touch</div>
           <ul className={`nav-links ${mobileMenuOpen ? 'mobile-active' : ''}`}>
             <li><a href="#home" onClick={closeMobileMenu}>Home</a></li>
-            <li><a href="#services" onClick={closeMobileMenu}>Services</a></li>
             <li><a href="#gallery" onClick={closeMobileMenu}>Gallery</a></li>
             <li><a href="#about" onClick={closeMobileMenu}>About</a></li>
             <li><a href="#book" className="btn-book" onClick={closeMobileMenu}>Book Now</a></li>
@@ -527,10 +526,10 @@ function Home() {
       </section>
 
       {/* 6. TESTIMONIALS */}
-      <section className="testimonials">
-        <div className="container">
-          <h2 className="section-title">What Our Clients Say</h2>
-          {testimonials.length > 0 ? (
+      {testimonials.length > 0 && (
+        <section className="testimonials">
+          <div className="container">
+            <h2 className="section-title">What Our Clients Say</h2>
             <div className="testimonials-grid">
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="testimonial-card">
@@ -540,13 +539,9 @@ function Home() {
                 </div>
               ))}
             </div>
-          ) : (
-            <div className="empty-testimonials">
-              <p>No testimonials yet. Be the first to share your experience!</p>
-            </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* 7. BOOKING CTA */}
       <section id="book" className="booking-cta">
