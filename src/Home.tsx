@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from './firebase';
-import PaystackPop from '@paystack/inline-js';
 import './App.css';
 
 interface GalleryItem {
@@ -72,86 +71,6 @@ function Home() {
   const traditionalDesigns = gallery.filter(item => item.category === 'traditional');
   const feetDesigns = gallery.filter(item => item.category === 'feet');
   const eventDesigns = gallery.filter(item => item.category === 'event');
-
-  // Professional booking payment handler with Paystack
-  const handlePayBookingFee = () => {
-    const paystackPublicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
-    
-    if (!paystackPublicKey || paystackPublicKey.includes('your_paystack')) {
-      alert('⚠️ Payment system configuration error. Please contact us via WhatsApp to complete your booking.');
-      window.open('https://wa.me/2348085521289?text=Hello%20Layo%20Henna%20Touch!%20I%27d%20like%20to%20book%20and%20pay%20the%20booking%20fee.', '_blank');
-      return;
-    }
-
-    // Collect customer information
-    const customerName = prompt('👤 Enter your full name:');
-    if (!customerName || customerName.trim() === '') {
-      alert('❌ Name is required to proceed with booking.');
-      return;
-    }
-
-    const customerEmail = prompt('📧 Enter your email address:');
-    if (!customerEmail || !customerEmail.includes('@')) {
-      alert('❌ Valid email is required to proceed with booking.');
-      return;
-    }
-
-    const customerPhone = prompt('📱 Enter your phone number:');
-    if (!customerPhone || customerPhone.trim() === '') {
-      alert('❌ Phone number is required to proceed with booking.');
-      return;
-    }
-
-    // Generate unique reference
-    const reference = 'HT-BF-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
-
-    // Initialize Paystack payment using the library
-    const paystack = PaystackPop.setup({
-      key: paystackPublicKey,
-      email: customerEmail,
-      amount: 20000, // ₦200 in kobo (Paystack uses kobo)
-      currency: 'NGN',
-      ref: reference,
-      metadata: {
-        custom_fields: [
-          {
-            display_name: 'Customer Name',
-            variable_name: 'customer_name',
-            value: customerName
-          },
-          {
-            display_name: 'Phone Number',
-            variable_name: 'phone_number',
-            value: customerPhone
-          },
-          {
-            display_name: 'Service Type',
-            variable_name: 'service_type',
-            value: 'Henna Booking Fee'
-          }
-        ]
-      },
-      onSuccess: (transaction: any) => {
-        // Payment successful
-        console.log('Payment successful:', transaction);
-        
-        alert(`✅ Payment Successful!\n\n💰 Amount: ₦200\n📝 Reference: ${transaction.reference}\n\n✨ Your booking slot is now secured!\n\nYou'll be redirected to WhatsApp to confirm your booking details.`);
-        
-        // Redirect to WhatsApp with booking confirmation
-        const whatsappMessage = `Hello Layo Henna Touch! 🎨\n\n✅ I've successfully paid the booking fee.\n\n👤 Name: ${customerName}\n📧 Email: ${customerEmail}\n📱 Phone: ${customerPhone}\n💳 Payment Reference: ${transaction.reference}\n💰 Amount: ₦200\n\nI'd like to confirm my henna appointment. Please let me know the next steps. Thank you!`;
-        
-        window.open(`https://wa.me/2348085521289?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-      },
-      onClose: () => {
-        // Payment cancelled
-        console.log('Payment cancelled');
-        alert('⚠️ Payment cancelled. Your booking fee was not processed.\n\nFeel free to try again when you\'re ready, or contact us via WhatsApp for assistance.');
-      }
-    });
-
-    // Open Paystack popup
-    paystack.openIframe();
-  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -391,11 +310,16 @@ function Home() {
             <div className="step">
               <div className="step-number">3</div>
               <div className="step-icon">📅</div>
-              <h3>Confirm Date & Pay</h3>
-              <p>Secure your slot by confirming the date and paying a booking fee of ₦200.</p>
-              <button className="pay-booking-fee-btn" onClick={() => handlePayBookingFee()}>
-                💳 Pay ₦200 Booking Fee Now
-              </button>
+              <h3>Confirm Date</h3>
+              <p>Contact us via WhatsApp to confirm your booking date and details.</p>
+              <a 
+                href="https://wa.me/2348085521289?text=Hello%20Layo%20Henna%20Touch!%20I%27d%20like%20to%20book%20an%20appointment." 
+                className="pay-booking-fee-btn" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                � Book via WhatsApp
+              </a>
             </div>
 
             <div className="step-arrow">→</div>
@@ -412,9 +336,9 @@ function Home() {
             <h4>Important Notes:</h4>
             <ul>
               <li>📍 <strong>Location:</strong> Ilaro, Ogun State (Home service available)</li>
-              <li>⏰ <strong>Booking in Advance:</strong> Recommended a weeks ahead for events</li>
-              <li>💰 <strong>Payment:</strong> booking fee secures your slot, balance due after service</li>
-              <li>📞 <strong>Cancellation:</strong> 48 hours notice required for full refund</li>
+              <li>⏰ <strong>Booking in Advance:</strong> Recommended a week ahead for events</li>
+              <li>💰 <strong>Payment:</strong> Discuss payment details via WhatsApp</li>
+              <li>📞 <strong>Cancellation:</strong> 48 hours notice required</li>
             </ul>
           </div>
         </div>

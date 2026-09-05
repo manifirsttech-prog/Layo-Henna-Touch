@@ -311,12 +311,12 @@ function AdminDashboard() {
                   <div className="form-group">
                     <label>Category *</label>
                     <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-                      <option value="bridal">Bridal Designs</option>
-                      <option value="arabic">Arabic Designs</option>
-                      <option value="simple">Simple Designs</option>
-                      <option value="traditional">Traditional Designs</option>
-                      <option value="feet">Feet Designs</option>
-                      <option value="event">Event Designs</option>
+                      <option value="bridal">Bridal Henna</option>
+                      <option value="arabic">Eid Henna</option>
+                      <option value="simple">Birthday Henna</option>
+                      <option value="traditional">Part & Event Henna</option>
+                      <option value="feet">Wedding Guest Henna</option>
+                      <option value="event">Graduation Henna</option>
                     </select>
                   </div>
 
