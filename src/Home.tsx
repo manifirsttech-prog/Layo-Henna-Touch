@@ -66,11 +66,11 @@ function Home() {
   const displayGallery = featuredGallery.length >= 3 ? featuredGallery : gallery.slice(0, 3);
 
   const bridalDesigns = gallery.filter(item => item.category === 'bridal');
-  const arabicDesigns = gallery.filter(item => item.category === 'arabic');
-  const simpleDesigns = gallery.filter(item => item.category === 'simple');
-  const traditionalDesigns = gallery.filter(item => item.category === 'traditional');
-  const feetDesigns = gallery.filter(item => item.category === 'feet');
-  const eventDesigns = gallery.filter(item => item.category === 'event');
+  const eidDesigns = gallery.filter(item => item.category === 'eid');
+  const birthdayDesigns = gallery.filter(item => item.category === 'birthday');
+  const partyDesigns = gallery.filter(item => item.category === 'party');
+  const weddingDesigns = gallery.filter(item => item.category === 'wedding');
+  const graduationDesigns = gallery.filter(item => item.category === 'graduation');
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -366,8 +366,8 @@ function Home() {
             </div>
             <div className="showcase-card">
               <img 
-                src={arabicDesigns[0]?.imageUrl || 'https://via.placeholder.com/400x500/3b82f6/ffffff?text=Arabic+Designs'} 
-                alt="Arabic henna designs" 
+                src={eidDesigns[0]?.imageUrl || 'https://via.placeholder.com/400x500/3b82f6/ffffff?text=Eid+Designs'} 
+                alt="Eid henna designs" 
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.background = 'linear-gradient(135deg, #3b82f6, #60a5fa)';
@@ -376,13 +376,13 @@ function Home() {
               />
               <div className="showcase-info">
                 <h3>Eid Henna</h3>
-                <p>Bold, flowing patterns with contemporary flair</p>
+                <p>Festive Patterns to Celebrate in Style</p>
               </div>
             </div>
             <div className="showcase-card">
               <img 
-                src={simpleDesigns[0]?.imageUrl || 'https://via.placeholder.com/400x500/3b82f6/ffffff?text=Simple+Designs'} 
-                alt="Simple henna designs" 
+                src={birthdayDesigns[0]?.imageUrl || 'https://via.placeholder.com/400x500/3b82f6/ffffff?text=Birthday+Designs'} 
+                alt="Birthday henna designs" 
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.background = 'linear-gradient(135deg, #3b82f6, #60a5fa)';
@@ -391,49 +391,49 @@ function Home() {
               />
               <div className="showcase-info">
                 <h3>Birthday Henna</h3>
-                <p>Elegant minimalist patterns for everyday beauty</p>
+                <p>Beautiful Designs for Your Big Day</p>
               </div>
             </div>
             <div className="showcase-card">
               <div className="showcase-image-wrapper">
-                {traditionalDesigns.length > 0 ? (
+                {partyDesigns.length > 0 ? (
                   <img 
-                    src={traditionalDesigns[0].imageUrl} 
-                    alt="Traditional henna designs"
+                    src={partyDesigns[0].imageUrl} 
+                    alt="Party henna designs"
                   />
                 ) : (
                   <div className="placeholder-box">
-                    Upload Traditional Designs
+                    Upload Party Designs
                   </div>
                 )}
               </div>
               <div className="showcase-info">
                 <h3>Party & Event Henna</h3>
-                <p>Classic and authentic cultural henna patterns</p>
+                <p>Stunning Patterns for Every Celebration</p>
               </div>
             </div>
             <div className="showcase-card">
               <div className="showcase-image-wrapper">
-                {feetDesigns.length > 0 ? (
+                {weddingDesigns.length > 0 ? (
                   <img 
-                    src={feetDesigns[0].imageUrl} 
-                    alt="Feet henna designs"
+                    src={weddingDesigns[0].imageUrl} 
+                    alt="Wedding henna designs"
                   />
                 ) : (
                   <div className="placeholder-box">
-                    Upload Feet Designs
+                    Upload Wedding Designs
                   </div>
                 )}
               </div>
               <div className="showcase-info">
                 <h3>Wedding Guest Henna</h3>
-                <p>Beautiful henna patterns for feet and ankles</p>
+                <p>Elegant Designs for the Perfect Guest Look</p>
               </div>
             </div>
             <div className="showcase-card">
               <img 
-                src={eventDesigns[0]?.imageUrl || 'https://via.placeholder.com/400x500/3b82f6/ffffff?text=Event+Designs'} 
-                alt="Event henna designs" 
+                src={graduationDesigns[0]?.imageUrl || 'https://via.placeholder.com/400x500/3b82f6/ffffff?text=Graduation+Designs'} 
+                alt="Graduation henna designs" 
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.background = 'linear-gradient(135deg, #3b82f6, #60a5fa)';
@@ -442,7 +442,7 @@ function Home() {
               />
               <div className="showcase-info">
                 <h3>Graduation Henna</h3>
-                <p>Perfect for festivals, parties, and celebrations</p>
+                <p>Celebrate Your Achievement in Style</p>
               </div>
             </div>
           </div>
